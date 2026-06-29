@@ -261,6 +261,12 @@ function toKey(d){ return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,
 
 function parseDataStr(v){
   if(!v) return null;
+  // Número serial do Excel (ex: 46000)
+  if(typeof v === 'number'){
+    const d=new Date(Math.round((v-25569)*86400*1000));
+    d.setMinutes(d.getMinutes()+d.getTimezoneOffset());
+    return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+  }
   const s=String(v).trim();
   if(s.indexOf('/')>0){ const p=s.split('/'); if(p.length===3) return p[2]+'-'+p[1].padStart(2,'0')+'-'+p[0].padStart(2,'0'); }
   if(s.length>=10&&s[4]==='-') return s.slice(0,10);
