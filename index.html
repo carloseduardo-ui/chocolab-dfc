@@ -357,7 +357,7 @@ function lerContasDiarias(wb){
   const wsP=wb.Sheets['CONTAS A PAGAR'];
   if(wsR){
     const data=XLSX.utils.sheet_to_json(wsR,{header:1,defval:null,raw:true});
-    for(let i=4;i<data.length;i++){
+    for(let i=1;i<data.length;i++){
       const row=data[i]; if(!row||!row[0]) continue;
       const d=parseDataStr(row[2]); // col D (index 2 from B)
       const v=parseNum(row[5]);     // col G (index 5 from B)
@@ -366,7 +366,7 @@ function lerContasDiarias(wb){
   }
   if(wsP){
     const data=XLSX.utils.sheet_to_json(wsP,{header:1,defval:null,raw:true});
-    for(let i=4;i<data.length;i++){
+    for(let i=1;i<data.length;i++){
       const row=data[i]; if(!row||!row[0]) continue;
       const d=parseDataStr(row[2]); // col D
       const v=parseNum(row[4]);     // col F
